@@ -1,0 +1,232 @@
+#include <AccelStepper.h>
+#include <Pushbutton.h>
+#include <SPI.h>
+#include <MFRC522.h>
+#define MOTION_SENSOR 7
+#define BOMNUOC A0 
+#define OBS_SENSOR A1
+#define FLAME_SENSOR A2
+#define STEP 2
+#define DIR 5
+#define ENDSTOP_OPEN 4
+#define ENDSTOP_CLOSE 3
+#define EN 8
+#define SS_PIN 10
+#define RST_PIN 9
+#define BUZZER 6
+#define BUTTON_MODE A3
+#define STOPPED 0
+#define OPENNING 1
+#define CLOSING 2
+const int RUNSPEED = 2000;
+const int OPEN_DELAY = 5000; //Thời gian chờ đóng cửa
+unsigned long tOpenDoor = 0;
+int _running; // 0 - stop; 1- openning; 2- closing
+int _auto=true; // 0 - RFID mode; 1 - auto mode
+String CARD_UID = "50 F6 85 A7";
+bool _warning = false;
+bool _buzzer;
+unsigned long t_buzzer;
+AccelStepper stepper(1, STEP, DIR);
+Pushbutton btnStopA(ENDSTOP_OPEN);
+Pushbutton btnStopB(ENDSTOP_CLOSE);
+MFRC522 mfrc522(SS_PIN, RST_PIN);
+Pushbutton btnMode(BUTTON_MODE);
+void setup() {
+ // put your setup code here, to run once:
+ pinMode(MOTION_SENSOR, INPUT);
+ pinMode(OBS_SENSOR, INPUT);
+ pinMode(BUZZER, OUTPUT);
+ pinMode(BOMNUOC, OUTPUT);
+ Serial.begin(9600);
+ pinMode(EN,OUTPUT);
+ digitalWrite(EN, LOW);
+ Serial.println("System started");
+ stepper.setMaxSpeed(10000);
+ SPI.begin(); // MFRC522 Hardware uses SPI protocol
+ mfrc522.PCD_Init(); // Initialize MFRC522 Hardware
+ noTone(BUZZER);
+ noTone(BOMNUOC);
+}
+void loop() {
+ // Nếu cảm biến chuyển động báo có thì mở cửa
+ if (_auto) {
+ //Chế độ mở cửa theo cảm biến chuyển động
+ if (checkCondition()) {
+ //Serial.println("Motion detected");
+
+ openDoor(true); 
+ }
+ } else {
+ //Chế độ mở cửa bằng RFID
+ //Nếu đang đóng cửa thì kiểm tra tình trạng đầu đọc
+ if (btnStopA.isPressed()) {
+ //Nếu đúng thẻ RFID thì mở cửa
+ if (_running != OPENNING) {
+ if (checkRFID()) openDoor(true);
+ }
+ }
+ else {
+ //Nếu cửa đang mở thì kiểm tra tình trạng của cảm biến
+ if (checkCondition()) {
+ //Serial.println("Motion detected");
+ openDoor(true); 
+ }
+ }
+ 
+ }
+ //Nếu phát hiện lửa thì bật chế độ báo động
+ if (digitalRead(FLAME_SENSOR) == LOW) {
+ openDoor(true); // Mở cửa
+ _warning = true; // Bật còi hú
+ digitalWrite(BOMNUOC,HIGH);
+ }
+ //Nếu ở chế độ báo động thì hú còi
+ if (_warning){
+ // Hiệu ứng hú còi
+ if (millis()-t_buzzer > 500) {
+ _buzzer = !_buzzer;
+
+ if (_buzzer) {digitalWrite(BUZZER,HIGH);} else 
+{digitalWrite(BUZZER,LOW);}
+ t_buzzer = millis();
+ }
+ //Dùng thẻ RFID để thoát chế độ báo động
+ if (btnStopB.isPressed()) {
+ if(checkRFID()){ 
+ _warning = false;
+ digitalWrite(BUZZER,LOW);
+digitalWrite(BOMNUOC,LOW);
+ openDoor(false);
+ }
+ }
+ }
+ // Nút nhấn chuyển mode
+ if (btnMode.getSingleDebouncedPress()) {
+
+ _auto = !_auto; //Đảo chế độ
+    Serial.println(_auto);
+ if (_auto) {
+ //Nếu chế độ auto thì phát 1 tiếng bipzzz
+ digitalWrite(BUZZER,HIGH);
+ delay(200);
+ digitalWrite (BUZZER,LOW);
+ }
+ else {
+ //Nếu chế độ RFID thì phát 2 tiếng bipzzz
+ digitalWrite(BUZZER,HIGH);
+ delay(200);
+ digitalWrite (BUZZER,LOW); 
+ delay(100); 
+ digitalWrite(BUZZER,HIGH);
+ delay(200);
+ digitalWrite (BUZZER,LOW); 
+ }
+
+ }
+ 
+ if (btnStopB.isPressed() && (millis()- tOpenDoor > OPEN_DELAY) && 
+(!_warning)) {
+ //Sau 5 giây tự động đóng cửa nếu không có vật cản 
+ if (!checkCondition()) openDoor(false);
+ }
+ if (btnStopA.getSingleDebouncedPress())
+ {
+ //Endstop A activated: Closed
+ stepper.stop(); 
+ Serial.println("Endstop A"); 
+ _running = STOPPED; 
+ }
+ if (btnStopB.getSingleDebouncedPress())
+ {
+ tOpenDoor = millis();
+ //Endstop B activated: Opened
+ stepper.stop();
+ Serial.println("Endstop B");
+ _running = STOPPED;
+ }
+ //Chạy động cơ bƣớc
+ if (_running != 0) stepper.runSpeed();
+ 
+}
+void openDoor(bool val){
+ if (val) {
+ //Nếu công tắc B chƣa chạm thì tiếp tục mở cửa
+ if (!btnStopB.isPressed() && _running != OPENNING){
+
+ Serial.println("Opening the door");
+ _running = OPENNING;
+ stepper.setSpeed(-RUNSPEED); 
+ tOpenDoor = millis(); // Lấy mốc thời gian để đóng cửa
+ } 
+ }
+ else
+ {
+ //Nếu công tắc A chƣa chạm thì tiếp tục đóng cửa
+ if (!btnStopA.isPressed() && _running!= CLOSING){
+ Serial.println("Closing the door");
+ _running = CLOSING;
+ stepper.setSpeed(RUNSPEED);
+ }
+ }
+}
+bool checkCondition() {
+ //Kiểm tra cảm biến chuyển động và vật cản
+ //Serial.println(digitalRead(MOTION_SENSOR));
+ //Serial.println(digitalRead(OBS_SENSOR));
+ if (digitalRead(MOTION_SENSOR)==HIGH) return true;
+ if (digitalRead(OBS_SENSOR)== LOW) return true;
+ return false;
+}
+bool checkRFID (){
+ // Look for new cards
+ if ( ! mfrc522.PICC_IsNewCardPresent()) 
+ {
+ return false;
+ }
+
+ // Select one of the cards
+ if ( ! mfrc522.PICC_ReadCardSerial()) 
+ {
+ return false;
+ }
+ //Show UID on serial monitor
+ Serial.print("UID tag :");
+ String content= "";
+ byte letter;
+ for (byte i = 0; i < mfrc522.uid.size; i++)
+ {
+ Serial.print(mfrc522.uid.uidByte[i] < 0x10 ? " 0" : " ");
+ Serial.print(mfrc522.uid.uidByte[i], HEX);
+ content.concat(String(mfrc522.uid.uidByte[i] < 0x10 ? " 0" : " "));
+ content.concat(String(mfrc522.uid.uidByte[i], HEX));
+ }
+ Serial.println();
+ Serial.print("Message : ");
+ content.toUpperCase();
+ if (content.substring(1) == CARD_UID) //change here the UID of the card/cards that you want to give access
+ {
+ //Nếu đúng thẻ RFID thì phát 2 tiếng bipzzz ngắn
+ digitalWrite(BUZZER,HIGH);
+ delay(200);
+ digitalWrite (BUZZER,LOW); 
+ delay(100); 
+ digitalWrite(BUZZER,HIGH);
+ delay(200);
+ digitalWrite (BUZZER,LOW); 
+ Serial.println("Authorized access");
+ return true;
+ 
+ 
+
+ }
+else {
+ //Nếu sai thẻ thì phát 1 tiếng bip dài
+ digitalWrite(BUZZER,HIGH);
+ delay(1500);
+ digitalWrite (BUZZER,LOW); 
+ Serial.println(" Access denied");
+ return false;
+ 
+ }
+}
