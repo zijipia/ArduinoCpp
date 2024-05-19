@@ -1,0 +1,85 @@
+#include <TimerOne.h>
+
+const int outAH = 9;
+const int outBH = 10;
+const int outAL = 5;
+const int outBL = 6;
+const int total_sample = 38; // total_sample should be an integer
+const int f_sine = 50;
+const int f_pwm = 4600;
+const float phi = 3.14;
+const int feedback = A7;
+
+float sine[200];
+int flag = 0;
+int sample = 0;
+int feedbackval;
+int A;
+
+void setup() {
+  Serial.begin(9600);
+
+  // Initialize the sine array
+  for (int angle = 0; angle < total_sample; angle++) {
+    float deg = angle * (180.0 / total_sample) * phi / 180.0;
+    sine[angle] = sin(deg);
+    Serial.println(angle);
+  }
+
+  float t_pwm = (1000.0 / f_pwm) * 1000.0;
+  delay(1000);
+  pinMode(outAL, OUTPUT);
+  pinMode(outBL, OUTPUT);
+  pinMode(outAH, OUTPUT);
+  pinMode(outBH, OUTPUT);
+  pinMode(feedback, INPUT);
+  digitalWrite(outAL,0);
+  digitalWrite(outBL,0);
+  digitalWrite(outAH,0);
+  digitalWrite(outBH,0);
+  A = 0;
+  
+  Timer1.initialize(t_pwm);
+  Timer1.attachInterrupt(create_sine);
+}
+
+void loop() {
+  feedbackval = analogRead(feedback);
+
+  while (512 > feedbackval) {
+    if (A < 995) { // Prevents A from exceeding 995
+      A = A + 1;
+    }
+    feedbackval = analogRead(feedback);
+    Serial.println(A);
+  }
+
+  while (512 < feedbackval) {
+    if (A > 0) { // Prevents A from going below 0
+      A = A - 1;
+    }
+    feedbackval = analogRead(feedback);
+    Serial.println(A);
+  }
+}
+
+void create_sine() {
+  if (sample >= total_sample) {
+    flag = !flag; // Toggle the flag
+    sample = 0; // Reset the sample
+  }
+
+  sample++;
+
+  if (flag == 0) {
+    digitalWrite(outAL,0);
+    digitalWrite(outBL,1);
+    Timer1.pwm(outAH, sine[sample] * A);
+    Timer1.pwm(outBH, 0);
+  } else {
+    digitalWrite(outBL,0);
+    digitalWrite(outAL,1);
+    Timer1.pwm(outBH, sine[sample] * A);
+    Timer1.pwm(outAH, 0);
+  }
+}
