@@ -37,12 +37,14 @@ void setup() {
   digitalWrite(outBH, LOW); // Khởi tạo trạng thái thấp cho chân outBH
   // -> 4 chân kích fet ở mức thấp ( datasheet ir2101s )
   A = 0; // Khởi tạo biến A với giá trị 0
-/* ===================================================
-  Số mẫu (total_sample): 100 mẫu cho mỗi chu kỳ.
-  Thời gian mỗi mẫu: 200µs, tương ứng với tần số ngắt Timer1 là 5kHz (1/200µs).
-  Một chu kỳ: 100 mẫu x 200µs = 20ms, tương đương với tần số 50Hz.
- ===================================================*/
-// Thiết lập Timer1 để tạo ngắt mỗi 200µs (200 microseconds)  
+
+  /* ===================================================
+    Số mẫu (total_sample): 100 mẫu cho mỗi chu kỳ.
+    Thời gian mỗi mẫu: 200µs, tương ứng với tần số ngắt Timer1 là 5kHz (1/200µs).
+    Một chu kỳ: 100 mẫu x 200µs = 20ms, tương đương với tần số 50Hz.
+  ===================================================*/
+
+  // Thiết lập Timer1 để tạo ngắt mỗi 200µs (200 microseconds)
   Timer1.initialize(200); // 200µs cho mỗi mẫu
   Timer1.attachInterrupt(create_sine); // Đính kèm hàm tạo sóng sine vào ngắt Timer1
 }
@@ -50,7 +52,7 @@ void setup() {
 void loop() {
   feedbackval = analogRead(feedback); // Đọc giá trị từ chân feedback
 
-  if (feedbackval < 512 && A < 995) { // Nếu giá trị feedback nhỏ hơn 512 và A nhỏ hơn 995
+  if (feedbackval < 512 && A < 1023) { // Nếu giá trị feedback nhỏ hơn 512 và A nhỏ hơn 1023
     A++; // Tăng giá trị A
   } else if (feedbackval > 512 && A > 0) { // Nếu giá trị feedback lớn hơn 512 và A lớn hơn 0
     A--; // Giảm giá trị A
@@ -64,11 +66,13 @@ void create_sine() {
     flag = !flag; // Đảo chiều sóng sine
     sample = 0; // Reset mẫu về 0
   }
-/* ===================================================
-  2 Chân Hin của ir2101s nhận được xung pwm điều chế theo sin 50hz
-  2 Chân Lin của ir2101s nhận được xung vuông 50hz
-  flag = 0 -> AH + BL ~~ ngược lại
- ===================================================*/
+
+  /* ===================================================
+    2 Chân Hin của ir2101s nhận được xung pwm điều chế theo sin 50hz
+    2 Chân Lin của ir2101s nhận được xung vuông 50hz
+    flag = 0 -> AH + BL ~~ ngược lại
+  ===================================================*/
+  
   if (flag == 0) { // Nếu cờ flag bằng 0, tạo nửa chu kỳ dương của sóng sine
     digitalWrite(outAL, LOW); // Đặt chân outAL thấp
     digitalWrite(outBL, HIGH); // Đặt chân outBL cao
