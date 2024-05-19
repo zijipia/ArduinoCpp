@@ -64,7 +64,11 @@ void create_sine() {
     flag = !flag; // Đảo chiều sóng sine
     sample = 0; // Reset mẫu về 0
   }
-
+/* ===================================================
+  2 Chân Hin của ir2101s nhận được xung pwm điều chế theo sin 50hz
+  2 Chân Lin của ir2101s nhận được xung vuông 50hz
+  flag = 0 -> AH + BL ~~ ngược lại
+ ===================================================*/
   if (flag == 0) { // Nếu cờ flag bằng 0, tạo nửa chu kỳ dương của sóng sine
     digitalWrite(outAL, LOW); // Đặt chân outAL thấp
     digitalWrite(outBL, HIGH); // Đặt chân outBL cao
