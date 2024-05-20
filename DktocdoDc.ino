@@ -1,5 +1,5 @@
-int TocDo = 50;
-bool dir = 1;
+int TocDo = 50; // 0 -> 255
+bool dir = 1; // chieu quay
 void setup() {
   // put your setup code here, to run once:
 pinMode(12,OUTPUT);
