@@ -30,9 +30,9 @@ void setup() {
   
   // Display startup message
   lcd.setCursor(0, 0);
-  lcd.print("Fingerprint");
+  lcd.print("Van Tay");
   lcd.setCursor(0, 1);
-  lcd.print("Door Lock");
+  lcd.print("Mo Khoa");
   delay(2000);
   lcd.clear();
 }
@@ -59,7 +59,7 @@ void initializeFingerprintSensor() {
     }
   }
   lcd.clear();
-  lcd.print("Sensor Fail");
+  lcd.print("Loi Cam Bien");
   while (1) { delay(1); } // Halt the program
 }
 
@@ -92,7 +92,7 @@ void displayMenu() {
   waitForButtonPress();
   
   lcd.clear();
-  lcd.print("Select Option");
+  lcd.print("Chon Tinh Nang");
   
   // Debounce button
   delay(500);
@@ -105,25 +105,25 @@ void displayMenu() {
   switch (option) {
     case 1:
       lcd.clear();
-      lcd.print("Enroll Master");
+      lcd.print("Dang Ky Chinh");
       delay(2000);
       enrollFinger(masterID);
       break;
     case 2:
       lcd.clear();
-      lcd.print("Enroll Slave");
+      lcd.print("Dang Ky Phu");
       delay(2000);
       enrollSlaveFinger();
       break;
     case 3:
       lcd.clear();
-      lcd.print("Delete Slave");
+      lcd.print("Xoa Van Tay");
       delay(2000);
       deleteSlaveFinger();
       break;
     default:
       lcd.clear();
-      lcd.print("Invalid Option");
+      lcd.print("Lua Chon Sai");
       delay(2000);
       break;
   }
@@ -144,7 +144,7 @@ int getUserOption() {
     if (digitalRead(buttonPin) == LOW) {
       count++;
       lcd.clear();
-      lcd.print("Count: "); lcd.print(count);
+      lcd.print("So Lan: "); lcd.print(count);
       delay(500); // Debounce delay
       while (digitalRead(buttonPin) == LOW) {} // Wait for button release
     }
@@ -162,7 +162,7 @@ void getFingerprintID() {
   p = finger.fingerFastSearch();
   if (p != FINGERPRINT_OK) {
     lcd.setCursor(0, 0);
-    lcd.print("Access Denied");
+    lcd.print("Tu Choi Truy Cap");
     return;
   }
   
@@ -171,7 +171,7 @@ void getFingerprintID() {
   lcd.setCursor(0, 0);
   lcd.print("ID: "); lcd.print(finger.fingerID);
   lcd.setCursor(0, 1);
-  lcd.print("Access Granted");
+  lcd.print("Truy Cap OK");
   
   // Open the door
   digitalWrite(relayPin, HIGH);
@@ -183,10 +183,10 @@ void getFingerprintID() {
 // Function to enroll a new finger
 void enrollFinger(uint8_t id) {
   lcd.clear();
-  lcd.print("Place Finger");
+  lcd.print("Dat Van Tay");
   while (!getFingerPrintEnroll(id));
   lcd.clear();
-  lcd.print("Enrolled!");
+  lcd.print("Dang Ky OK!");
   delay(2000);
   lcd.clear();
 }
@@ -209,15 +209,15 @@ void enrollSlaveFinger() {
   }
   if (id > 127) {
     lcd.clear();
-    lcd.print("Memory Full");
+    lcd.print("Bo Nho Day");
     return;
   }
   
   lcd.clear();
-  lcd.print("Place Finger");
+  lcd.print("Dat Van Tay");
   while (!getFingerPrintEnroll(id));
   lcd.clear();
-  lcd.print("Enrolled!");
+  lcd.print("Dang Ky OK!");
   delay(2000);
   lcd.clear();
 }
@@ -232,23 +232,23 @@ void deleteSlaveFinger() {
   }
   
   lcd.clear();
-  lcd.print("Enter Slave ID");
+  lcd.print("Nhap ID Phu");
   delay(2000);
   
   int id = getUserOption(); // Replace with actual method to get user input
   if (id <= 1 || id > 127) {
     lcd.clear();
-    lcd.print("Invalid ID");
+    lcd.print("ID Khong Hop Le");
     delay(2000);
     return;
   }
   
   if (finger.deleteModel(id) == FINGERPRINT_OK) {
     lcd.clear();
-    lcd.print("Deleted!");
+    lcd.print("Da Xoa OK!");
   } else {
     lcd.clear();
-    lcd.print("Delete Failed");
+    lcd.print("Xoa That Bai");
   }
   delay(2000);
   lcd.clear();
@@ -257,7 +257,7 @@ void deleteSlaveFinger() {
 // Function to verify master fingerprint
 bool verifyMaster() {
   lcd.clear();
-  lcd.print("Place Master");
+  lcd.print("Dat Master");
   while (true) {
     uint8_t p = finger.getImage();
     if (p != FINGERPRINT_OK) continue;
@@ -272,7 +272,7 @@ bool verifyMaster() {
       return true;
     } else {
       lcd.setCursor(0, 1);
-      lcd.print("Van tay khong dung");
+      lcd.print("Van Tay Sai");
       delay(2000);
       return false;
     }
@@ -282,7 +282,7 @@ bool getFingerPrintEnroll(uint8_t id) {
   int p = -1;
   Serial.print("Waiting for valid finger to enroll as #"); Serial.println(id);
   lcd.setCursor(0, 1);
-  lcd.print("Waiting...");
+  lcd.print("Dang Cho...");
   while (p != FINGERPRINT_OK) {
     p = finger.getImage();
     switch (p) {
@@ -292,22 +292,22 @@ bool getFingerPrintEnroll(uint8_t id) {
     case FINGERPRINT_NOFINGER:
       Serial.print(".");
       lcd.setCursor(0, 1);
-      lcd.print("No Finger");
+      lcd.print("Khong Co Van Tay");
       break;
     case FINGERPRINT_PACKETRECIEVEERR:
       Serial.println("Communication error");
       lcd.setCursor(0, 1);
-      lcd.print("Communication error");
+      lcd.print("Loi Ket Noi");
       break;
     case FINGERPRINT_IMAGEFAIL:
       Serial.println("Imaging error");
       lcd.setCursor(0, 1);
-      lcd.print("Imaging error");
+      lcd.print("Loi Hinh Anh");
       break;
     default:
       Serial.println("Unknown error");
       lcd.setCursor(0, 1);
-      lcd.print("Unknown error");
+      lcd.print("Loi Khong Biet");
       break;
     }
   }
@@ -320,10 +320,10 @@ bool getFingerPrintEnroll(uint8_t id) {
     case FINGERPRINT_OK:
       Serial.println("Image converted");
       lcd.clear();
-      lcd.print("Remove Finger");
+      lcd.print("Rut Tay Ra");
       delay(2000);
       lcd.clear();
-      lcd.print("Place Again");
+      lcd.print("Dat Lai Lan 2");
       break;
     case FINGERPRINT_IMAGEMESS:
       Serial.println("Image too messy");
