@@ -100,7 +100,7 @@ void displayMenu() {
   waitForButtonRelease();
   
   // Get option
-  int option = getUserOption();
+  int option = getUserOption(0);
   
   switch (option) {
     case 1:
@@ -137,8 +137,7 @@ void waitForButtonRelease() {
   while (digitalRead(buttonPin) == LOW) {}
 }
 
-int getUserOption() {
-  int count = 0;
+int getUserOption( int count = 0) {
   unsigned long startTime = millis();
   while (millis() - startTime < 3000) { // 3 seconds window to count button presses
     if (digitalRead(buttonPin) == LOW) {
@@ -223,7 +222,7 @@ void deleteSlaveFinger() {
   lcd.print("Nhap ID Phu");
   delay(2000);
   
-  int id = getUserOption(); // Replace with actual method to get user input
+  int id = getUserOption(1); // Replace with actual method to get user input
   if (id <= 1 || id > 127) {
     lcd.clear();
     lcd.print("ID Khong Hop Le");
