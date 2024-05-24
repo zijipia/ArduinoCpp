@@ -193,12 +193,6 @@ void enrollFinger(uint8_t id) {
 
 // Function to enroll a new slave finger
 void enrollSlaveFinger() {
-  if (!verifyMaster()) {
-    lcd.clear();
-    lcd.print("Master Denied");
-    delay(2000);
-    return;
-  }
   
   int id = 2; // Start from ID 2 for slaves
   while (id <= 127) { // Limited by the sensor's capacity
@@ -224,12 +218,6 @@ void enrollSlaveFinger() {
 
 // Function to delete a slave finger
 void deleteSlaveFinger() {
-  if (!verifyMaster()) {
-    lcd.clear();
-    lcd.print("Master Denied");
-    delay(2000);
-    return;
-  }
   
   lcd.clear();
   lcd.print("Nhap ID Phu");
