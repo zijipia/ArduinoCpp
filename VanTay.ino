@@ -137,9 +137,9 @@ void waitForButtonRelease() {
   while (digitalRead(buttonPin) == LOW) {}
 }
 
-int getUserOption( int count = 0) {
+int getUserOption( int count ) {
   unsigned long startTime = millis();
-  while (millis() - startTime < 3000) { // 3 seconds window to count button presses
+  while (millis() - startTime < 5000) { // 5 seconds window to count button presses
     if (digitalRead(buttonPin) == LOW) {
       count++;
       lcd.clear();
