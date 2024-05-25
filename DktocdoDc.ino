@@ -4,14 +4,17 @@
 #define EN_PIN 11
 #define IN1_PIN 12
 #define IN2_PIN 13
-#define BUTTON_DIR_PIN 2
-#define BUTTON_INC_PIN 3
-#define BUTTON_DEC_PIN 4
+
+#define BUTTON_DEC_PIN 2
+#define BUTTON_DIR_PIN 3
+#define BUTTON_INC_PIN 4
 
 LiquidCrystal_I2C lcd(0x27, 16, 2);
 
-int speed = 128; // Tốc độ ban đầu (50%)
+bool status = true; // on, off
+int speed = 128; // Initial speed (50%)
 bool direction = true; // true: forward, false: backward
+
 unsigned long buttonPressTime = 0;
 
 void setup() {
@@ -28,69 +31,82 @@ void setup() {
   lcd.setCursor(0, 0);
   lcd.print("Speed: ");
   lcd.setCursor(0, 1);
-  lcd.print("Dir: FWD");
+  lcd.print("Dir:");
 
   updateSpeed();
+  updateDirection();
 }
 
 void loop() {
-  // Kiểm tra nút đổi chiều
+  // Check direction change button
+  handleDirectionButton();
+
+  // Check speed increment button
+  if (digitalRead(BUTTON_INC_PIN) == LOW) {
+    if(!status){
+    status = true;
+    updateDirection();
+    }
+    changeSpeed(3);
+  }
+
+  // Check speed decrement button
+  if (digitalRead(BUTTON_DEC_PIN) == LOW) {
+    changeSpeed(-3);
+  }
+}
+
+void handleDirectionButton() {
   if (digitalRead(BUTTON_DIR_PIN) == LOW) {
     if (buttonPressTime == 0) {
       buttonPressTime = millis();
     } else if (millis() - buttonPressTime > 3000) {
-      speed = 0;
-      updateSpeed();
-      delay(500); // Chờ để tránh xung đột
+      toggleStatus();
+      delay(500);
       buttonPressTime = 0;
     }
   } else if (buttonPressTime > 0) {
     direction = !direction;
     updateDirection();
     buttonPressTime = 0;
-    delay(500); // Chờ để tránh xung đột
+    delay(500);
   }
+}
 
-  // Kiểm tra nút tăng tốc
-  if (digitalRead(BUTTON_INC_PIN) == LOW) {
-    if (speed < 255) {
-      speed += 5;
-      if (speed > 255) speed = 255;
-      updateSpeed();
-      delay(200); // Tránh lặp quá nhanh
-    }
-  }
+void toggleStatus() {
+  speed = (speed == 0) ? 128 : 0;
+  status = !status;
+  updateSpeed();
+  updateDirection();
+}
 
-  // Kiểm tra nút giảm tốc
-  if (digitalRead(BUTTON_DEC_PIN) == LOW) {
-    if (speed > 0) {
-      speed -= 5;
-      if (speed < 0) speed = 0;
-      updateSpeed();
-      delay(200); // Tránh lặp quá nhanh
-    }
-  }
+void changeSpeed(int change) {
+  speed = constrain(speed + change, 0, 255);
+  updateSpeed();
+  delay(100);
 }
 
 void updateSpeed() {
   analogWrite(EN_PIN, speed);
   lcd.setCursor(7, 0);
-  lcd.print("    "); // Xóa giá trị cũ
+  lcd.print("     ");
   lcd.setCursor(7, 0);
-  lcd.print(map(speed, 0, 255, 0, 100));
-  lcd.print("%");
+  if (speed == 0) {
+    lcd.print("TAT");
+  } else {
+    lcd.print(map(speed, 0, 255, 0, 100));
+    lcd.print("%");
+  }
 }
 
 void updateDirection() {
-  if (direction) {
-    digitalWrite(IN1_PIN, HIGH);
-    digitalWrite(IN2_PIN, LOW);
+  if (status) {
+    digitalWrite(IN1_PIN, direction ? HIGH : LOW);
+    digitalWrite(IN2_PIN, direction ? LOW : HIGH);
     lcd.setCursor(5, 1);
-    lcd.print("FWD ");
+    lcd.print(direction ? "THUAN" : "NGICH");
   } else {
-    digitalWrite(IN1_PIN, LOW);
-    digitalWrite(IN2_PIN, HIGH);
     lcd.setCursor(5, 1);
-    lcd.print("REV ");
+    lcd.print("       ");
   }
 }
