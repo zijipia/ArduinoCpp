@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2024-05-27T21:16:06.649Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0" etag="FsWpfWak_PsX6bigfYXW" version="24.4.9" type="github">
+<mxfile host="app.diagrams.net" modified="2024-05-27T21:16:19.425Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0" etag="UTYWUv2JlXX6dGg73iva" version="24.4.9" type="github">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
-    <mxGraphModel dx="1136" dy="666" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1604" dy="940" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-0" />
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-1" parent="WIyWlLk6GJQsqaUBKTNV-0" />
@@ -173,13 +173,12 @@
         <mxCell id="_kfTSOZf8MFERhGrm2Hh-51" value="Điều chỉnh độ rộng xung PWM A" style="rounded=0;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
           <mxGeometry x="650" y="805" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="_kfTSOZf8MFERhGrm2Hh-59" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" edge="1">
+        <mxCell id="_kfTSOZf8MFERhGrm2Hh-59" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" edge="1" source="_kfTSOZf8MFERhGrm2Hh-54">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="800" y="540" as="targetPoint" />
             <mxPoint x="775" y="1070" as="sourcePoint" />
             <Array as="points">
               <mxPoint x="800" y="1070" />
-              <mxPoint x="800" y="540" />
             </Array>
           </mxGeometry>
         </mxCell>
