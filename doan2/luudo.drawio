@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2024-05-27T21:17:00.388Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0" etag="F2BeK6nMc5Gz75nwpPSP" version="24.4.9" type="github">
+<mxfile host="app.diagrams.net" modified="2024-05-27T21:17:23.221Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0" etag="OUS9sXNyKSoUni2Fyp0Y" version="24.4.9" type="github">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
-    <mxGraphModel dx="649" dy="380" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1363" dy="799" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-0" />
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-1" parent="WIyWlLk6GJQsqaUBKTNV-0" />
@@ -154,7 +154,7 @@
         <mxCell id="_kfTSOZf8MFERhGrm2Hh-53" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="_kfTSOZf8MFERhGrm2Hh-47" target="_kfTSOZf8MFERhGrm2Hh-51" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="_kfTSOZf8MFERhGrm2Hh-47" value="Xác định nửa chu kỳ" style="rhombus;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+        <mxCell id="_kfTSOZf8MFERhGrm2Hh-47" value="Xác định nửa chu kỳ&lt;div&gt;sine&lt;/div&gt;" style="rhombus;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
           <mxGeometry x="445" y="770" width="150" height="130" as="geometry" />
         </mxCell>
         <mxCell id="_kfTSOZf8MFERhGrm2Hh-56" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="_kfTSOZf8MFERhGrm2Hh-49" edge="1">
