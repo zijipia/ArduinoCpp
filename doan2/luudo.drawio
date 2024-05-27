@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2024-05-27T21:15:45.016Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0" etag="9zW1yx-eWq9Q_q7Yneyd" version="24.4.9" type="github">
+<mxfile host="app.diagrams.net" modified="2024-05-27T21:16:06.649Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0" etag="FsWpfWak_PsX6bigfYXW" version="24.4.9" type="github">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
-    <mxGraphModel dx="940" dy="551" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1136" dy="666" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-0" />
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-1" parent="WIyWlLk6GJQsqaUBKTNV-0" />
@@ -116,12 +116,12 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="_kfTSOZf8MFERhGrm2Hh-37" value="" style="endArrow=classic;html=1;rounded=0;dashed=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="_kfTSOZf8MFERhGrm2Hh-6" edge="1">
+        <mxCell id="_kfTSOZf8MFERhGrm2Hh-37" value="" style="endArrow=classic;html=1;rounded=0;dashed=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="_kfTSOZf8MFERhGrm2Hh-6" edge="1" target="_kfTSOZf8MFERhGrm2Hh-38">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="520" y="320" as="sourcePoint" />
             <mxPoint x="520" y="390" as="targetPoint" />
             <Array as="points">
-              <mxPoint x="520" y="280" />
+              <mxPoint x="640" y="280" />
             </Array>
           </mxGeometry>
         </mxCell>
@@ -129,7 +129,7 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="_kfTSOZf8MFERhGrm2Hh-38" value="Timer1 +++" style="rounded=0;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
-          <mxGeometry x="572.5" y="390" width="120" height="60" as="geometry" />
+          <mxGeometry x="580" y="390" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="_kfTSOZf8MFERhGrm2Hh-44" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="_kfTSOZf8MFERhGrm2Hh-40" target="_kfTSOZf8MFERhGrm2Hh-43" edge="1">
           <mxGeometry relative="1" as="geometry" />
@@ -140,13 +140,13 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="_kfTSOZf8MFERhGrm2Hh-40" value="Timer1 Tràn" style="rhombus;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
-          <mxGeometry x="560" y="480" width="145" height="120" as="geometry" />
+          <mxGeometry x="567.5" y="480" width="145" height="120" as="geometry" />
         </mxCell>
         <mxCell id="_kfTSOZf8MFERhGrm2Hh-48" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="_kfTSOZf8MFERhGrm2Hh-43" target="_kfTSOZf8MFERhGrm2Hh-47" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="_kfTSOZf8MFERhGrm2Hh-43" value="Kiểm tra số mẫu" style="whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
-          <mxGeometry x="572.5" y="650" width="120" height="60" as="geometry" />
+          <mxGeometry x="580" y="650" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="_kfTSOZf8MFERhGrm2Hh-52" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="_kfTSOZf8MFERhGrm2Hh-47" target="_kfTSOZf8MFERhGrm2Hh-49" edge="1">
           <mxGeometry relative="1" as="geometry" />
