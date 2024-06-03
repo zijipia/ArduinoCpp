@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2024-06-03T13:58:14.654Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0" etag="WNk4GyN2E-ydh6WxH8g_" version="24.4.13" type="github">
+<mxfile host="app.diagrams.net" modified="2024-06-03T13:58:40.721Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0" etag="QQLp6PQ4ko53l3oAU7qS" version="24.4.13" type="github">
   <diagram name="Page-1" id="3PN2rh3VQLnYHQBcSh-1">
     <mxGraphModel dx="1363" dy="799" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -8,19 +8,19 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="YR-1bHBkWM_l507x0TIl-1" value="Bắt đầu" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="278" y="50" width="120" height="80" as="geometry" />
+          <mxGeometry x="278" y="10" width="120" height="80" as="geometry" />
         </mxCell>
         <mxCell id="YR-1bHBkWM_l507x0TIl-5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="YR-1bHBkWM_l507x0TIl-2" target="YR-1bHBkWM_l507x0TIl-4">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="YR-1bHBkWM_l507x0TIl-2" value="Khởi tạo các biến và cài đặt các chân" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="278" y="160" width="120" height="60" as="geometry" />
+          <mxGeometry x="278" y="120" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="YR-1bHBkWM_l507x0TIl-7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="YR-1bHBkWM_l507x0TIl-4" target="YR-1bHBkWM_l507x0TIl-6">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="YR-1bHBkWM_l507x0TIl-4" value="Kiểm tra kết nối WiFi" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="278" y="270" width="120" height="60" as="geometry" />
+          <mxGeometry x="278" y="230" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="YR-1bHBkWM_l507x0TIl-9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="YR-1bHBkWM_l507x0TIl-6" target="YR-1bHBkWM_l507x0TIl-8">
           <mxGeometry relative="1" as="geometry" />
@@ -29,60 +29,60 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="YR-1bHBkWM_l507x0TIl-6" value="Mất kết nối?" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="273" y="360" width="130" height="130" as="geometry" />
+          <mxGeometry x="273" y="320" width="130" height="130" as="geometry" />
         </mxCell>
         <mxCell id="YR-1bHBkWM_l507x0TIl-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="YR-1bHBkWM_l507x0TIl-8">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="338" y="510" as="targetPoint" />
+            <mxPoint x="338" y="470" as="targetPoint" />
             <Array as="points">
-              <mxPoint x="548" y="510" />
+              <mxPoint x="548" y="470" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="YR-1bHBkWM_l507x0TIl-8" value="Thử kết nối lại và hiển thị thông báo" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="488" y="395" width="120" height="60" as="geometry" />
+          <mxGeometry x="488" y="355" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="YR-1bHBkWM_l507x0TIl-14" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="YR-1bHBkWM_l507x0TIl-10" target="YR-1bHBkWM_l507x0TIl-13">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="YR-1bHBkWM_l507x0TIl-10" value="Kiểm tra nút tăng tốc độ" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="278" y="540" width="120" height="60" as="geometry" />
+          <mxGeometry x="278" y="500" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="YR-1bHBkWM_l507x0TIl-16" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="YR-1bHBkWM_l507x0TIl-13" target="YR-1bHBkWM_l507x0TIl-15">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="YR-1bHBkWM_l507x0TIl-13" value="Kiểm tra nút giảm tốc độ" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="278" y="620" width="120" height="60" as="geometry" />
+          <mxGeometry x="278" y="580" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="YR-1bHBkWM_l507x0TIl-18" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="YR-1bHBkWM_l507x0TIl-15" target="YR-1bHBkWM_l507x0TIl-17">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="YR-1bHBkWM_l507x0TIl-15" value="Kiểm tra nút on/off" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="278" y="700" width="120" height="60" as="geometry" />
+          <mxGeometry x="278" y="660" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="YR-1bHBkWM_l507x0TIl-20" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="YR-1bHBkWM_l507x0TIl-17" target="YR-1bHBkWM_l507x0TIl-19">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="YR-1bHBkWM_l507x0TIl-17" value="Cập nhật giá trị RPM mỗi giây" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="278" y="780" width="120" height="60" as="geometry" />
+          <mxGeometry x="278" y="740" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="YR-1bHBkWM_l507x0TIl-22" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="YR-1bHBkWM_l507x0TIl-19" target="YR-1bHBkWM_l507x0TIl-21">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="YR-1bHBkWM_l507x0TIl-19" value="Hiển thị thông số lên LCD" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
-          <mxGeometry x="243" y="880" width="190" height="60" as="geometry" />
+          <mxGeometry x="243" y="840" width="190" height="60" as="geometry" />
         </mxCell>
         <mxCell id="YR-1bHBkWM_l507x0TIl-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="YR-1bHBkWM_l507x0TIl-21">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="338" y="240" as="targetPoint" />
+            <mxPoint x="338" y="200" as="targetPoint" />
             <Array as="points">
-              <mxPoint x="170" y="1000" />
-              <mxPoint x="170" y="240" />
+              <mxPoint x="170" y="960" />
+              <mxPoint x="170" y="200" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="YR-1bHBkWM_l507x0TIl-21" value="Gửi dữ liệu tới Blynk" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="278" y="970" width="120" height="60" as="geometry" />
+          <mxGeometry x="278" y="930" width="120" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
